@@ -76,19 +76,6 @@ Only the value needs to change – the name `GymnasieProjektDB` is what the code
 
 Note: backslashes must be written as `\\` inside JSON.
 
-### Pointing the app at the actual system
-
-When the app should use the school's real database instead of the test database:
-
-1. Get the following from the school's IT department:
-   - the **server name** (and instance name, if any)
-   - the **database name**
-   - how to log in: **Windows authentication** (`Trusted_Connection=True`) or a **SQL login** (`User Id` / `Password`)
-2. Replace the value in `appsettings.json` with the new connection string.
-3. Use an account with **read-only access** (e.g. the `db_datareader` role). The app never writes data, and it should not be able to.
-4. `TrustServerCertificate=True` skips certificate validation. That is fine for development, but on a real server with a valid certificate it should be removed (or set to `False`), so the connection is encrypted *and* verified.
-5. The real database must have the same tables and columns as the ones in `Database/CreateDatabase.sql`. If it does not, the SQL in the repositories in `GymnasieProjekt.Core/Repositories` has to be adjusted.
-
 ### Editing an already built/installed app
 
 `appsettings.json` is copied next to the `.exe` when the project is built (e.g. `GymnasieProjekt.WPF/bin/Debug/net10.0-windows/`).
