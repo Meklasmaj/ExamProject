@@ -1,0 +1,25 @@
+<UserControl x:Class="GymnasieProjekt.WPF.Views.StudentView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:GymnasieProjekt.WPF.ViewModels"
+             mc:Ignorable="d"
+             d:DataContext="{d:DesignInstance Type=vm:StudentViewModel}"
+             d:DesignHeight="450" d:DesignWidth="800">
+
+    <!-- The page for one student -->
+    <StackPanel Margin="10">
+        <Button Content="← Tilbage" Command="{Binding BackCommand}"
+                HorizontalAlignment="Left" Padding="10,4" Margin="0,0,0,15"/>
+
+        <TextBlock Text="{Binding Student.FullName, Mode=OneWay}" FontSize="22" FontWeight="SemiBold"/>
+        <TextBlock Margin="0,2,0,12">
+            <Run Text="Klasse:"/>
+            <Run Text="{Binding Student.SchoolClass.Name, Mode=OneWay}"/>
+        </TextBlock>
+
+        <TextBlock Text="{Binding AbsenceText}" FontSize="16"/>
+        <TextBlock Text="{Binding ErrorMessage}" Foreground="DarkRed" TextWrapping="Wrap"/>
+    </StackPanel>
+</UserControl>

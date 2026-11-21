@@ -1,11 +1,11 @@
 namespace GymnasieProjekt.Core.Models;
 
-public class Student
+// Elev in the domain model.
+public class Student : Person
 {
     public int StudentId { get; set; }
-    public string FirstName { get; set; } = "";
-    public string LastName { get; set; } = "";
-    public string ClassName { get; set; } = "";
+    public SchoolClass? SchoolClass { get; set; }
 
-    public string FullName => $"{FirstName} {LastName}";
+    // Shown in the search dropdown, e.g. "Anna Jensen (1.a)"
+    public string DisplayName => SchoolClass == null ? FullName : $"{FullName} ({SchoolClass.Name})";
 }

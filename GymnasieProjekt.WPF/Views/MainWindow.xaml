@@ -7,33 +7,8 @@
         mc:Ignorable="d"
         d:DataContext="{d:DesignInstance Type=vm:MainViewModel}"
         Title="Fraværsoversigt" Height="500" Width="800">
-    <DockPanel Margin="10">
-
-        <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Margin="0,0,0,10">
-            <TextBlock Text="Klasse:" VerticalAlignment="Center" Margin="0,0,8,0"/>
-            <ComboBox ItemsSource="{Binding Classes}"
-                      SelectedItem="{Binding SelectedClass}"
-                      Width="150"/>
-            <Button Content="Genindlæs"
-                    Command="{Binding ReloadCommand}"
-                    Margin="10,0,0,0" Padding="10,2"/>
-        </StackPanel>
-
-        <TextBlock DockPanel.Dock="Bottom"
-                   Text="{Binding ErrorMessage}"
-                   Foreground="DarkRed" TextWrapping="Wrap" Margin="0,10,0,0"/>
-
-        <DataGrid ItemsSource="{Binding Students}"
-                  SelectedItem="{Binding SelectedStudent}"
-                  AutoGenerateColumns="False"
-                  IsReadOnly="True"
-                  CanUserAddRows="False">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="Elev-ID" Binding="{Binding StudentId}"/>
-                <DataGridTextColumn Header="Navn" Binding="{Binding FullName}" Width="*"/>
-                <DataGridTextColumn Header="Klasse" Binding="{Binding ClassName}"/>
-            </DataGrid.Columns>
-        </DataGrid>
-
-    </DockPanel>
+    <TabControl Margin="10">
+        <TabItem Header="Forside" Content="{Binding Home}"/>
+        <TabItem Header="Elever" Content="{Binding Students}"/>
+    </TabControl>
 </Window>

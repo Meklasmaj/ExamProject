@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 using GymnasieProjekt.Core.Repositories;
+using GymnasieProjekt.Core.Services;
 using GymnasieProjekt.WPF.ViewModels;
 using GymnasieProjekt.WPF.Views;
 using Microsoft.Extensions.Configuration;
@@ -22,7 +23,10 @@ public partial class App : Application
             ?? throw new InvalidOperationException("Connection string 'GymnasieProjektDB' mangler i appsettings.json");
 
         IStudentRepository studentRepository = new StudentRepository(connectionString);
-        var mainViewModel = new MainViewModel(studentRepository);
+        IAttendanceRepository attendanceRepository = new AttendanceRepository(connectionString);
+        var absenceService = new AbsenceService(attendanceRepository);
+
+        var mainViewModel = new MainViewModel(studentRepository, absenceService);
 
         var mainWindow = new MainWindow { DataContext = mainViewModel };
         mainWindow.Show();
