@@ -1,6 +1,6 @@
 # Domænemodel
 
-HLD-artefakt, derfor på dansk. Se [Ordliste.md](Ordliste.md) for de engelske navne i koden.
+HLD-artefakt, derfor på dansk.
 
 Modellen dækker de begreber, Elever-delen af appen bruger. Medarbejder, Rolle, Fag og Uddannelse
 fra den oprindelige domænemodel er ikke med endnu.
