@@ -7,8 +7,18 @@
         mc:Ignorable="d"
         d:DataContext="{d:DesignInstance Type=vm:MainViewModel}"
         Title="Fraværsoversigt" Height="500" Width="800">
-    <TabControl Margin="10">
-        <TabItem Header="Forside" Content="{Binding Home}"/>
-        <TabItem Header="Elever" Content="{Binding Students}"/>
-    </TabControl>
+    <DockPanel>
+        <!-- Menu on the left -->
+        <StackPanel DockPanel.Dock="Left" Width="140" Background="#F0F0F0">
+            <Button Content="Forside" Command="{Binding ShowHomeCommand}" Margin="8,8,8,4" Padding="4"/>
+            <Button Content="Elever" Command="{Binding ShowStudentsCommand}" Margin="8,4" Padding="4"/>
+        </StackPanel>
+
+        <!-- Back button for the whole app: greyed out when there's nowhere to go back to -->
+        <Button DockPanel.Dock="Top" Content="← Tilbage" Command="{Binding Navigator.BackCommand}"
+                HorizontalAlignment="Left" Margin="10,10,10,0" Padding="10,4"/>
+
+        <!-- Shows the current page; the DataTemplates in App.xaml pick the view -->
+        <ContentControl Content="{Binding Navigator.CurrentPage}"/>
+    </DockPanel>
 </Window>

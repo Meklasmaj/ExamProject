@@ -1,28 +1,25 @@
 using System.Globalization;
-using System.Windows.Input;
 using GymnasieProjekt.Core.Models;
 using GymnasieProjekt.Core.Services;
 using GymnasieProjekt.WPF.MVVM;
 
 namespace GymnasieProjekt.WPF.ViewModels;
 
-// The page for one student. It doesn't know where it was opened from:
-// whoever opens it passes in what "Tilbage" should do. That way the same page
-// can be opened from the student list, a class view, or anywhere else.
+// The page for one student. It doesn't know where it was opened from, so the
+// same page can be opened from the student list, a class view, or anywhere else:
+//     navigator.NavigateTo(new StudentViewModel(student, absenceService));
+// "Tilbage" is handled by the Navigator (the button in MainWindow).
 public class StudentViewModel : ViewModelBase
 {
     private static readonly CultureInfo Danish = new("da-DK");
 
-    public StudentViewModel(Student student, AbsenceService absenceService, Action goBack)
+    public StudentViewModel(Student student, AbsenceService absenceService)
     {
         Student = student;
-        BackCommand = new RelayCommand(_ => goBack());
         LoadAbsence(absenceService);
     }
 
     public Student Student { get; }
-
-    public ICommand BackCommand { get; }
 
     public string AbsenceText { get; private set; } = "";
 

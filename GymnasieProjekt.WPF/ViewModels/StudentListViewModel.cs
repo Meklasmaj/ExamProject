@@ -1,21 +1,24 @@
 using System.Collections.ObjectModel;
 using GymnasieProjekt.Core.Models;
 using GymnasieProjekt.Core.Repositories;
+using GymnasieProjekt.Core.Services;
 using GymnasieProjekt.WPF.MVVM;
 
 namespace GymnasieProjekt.WPF.ViewModels;
 
 // The page with all students and the search field.
-// It only reports which student was chosen (openStudent); it doesn't show them itself.
+// Choosing a student navigates to that student's page.
 public class StudentListViewModel : ViewModelBase
 {
     private readonly IStudentRepository _studentRepository;
-    private readonly Action<Student> _openStudent;
+    private readonly AbsenceService _absenceService;   // only passed on to the student page
+    private readonly Navigator _navigator;
 
-    public StudentListViewModel(IStudentRepository studentRepository, Action<Student> openStudent)
+    public StudentListViewModel(IStudentRepository studentRepository, AbsenceService absenceService, Navigator navigator)
     {
         _studentRepository = studentRepository;
-        _openStudent = openStudent;
+        _absenceService = absenceService;
+        _navigator = navigator;
         LoadAllStudents();
     }
 
@@ -35,7 +38,7 @@ public class StudentListViewModel : ViewModelBase
 
             // Reset() sets it back to null: that shouldn't open anything
             if (value != null)
-                _openStudent(value);
+                OpenStudent(value);
         }
     }
 
@@ -76,7 +79,7 @@ public class StudentListViewModel : ViewModelBase
             if (value != null)
             {
                 IsDropDownOpen = false;
-                _openStudent(value);
+                OpenStudent(value);
             }
         }
     }
@@ -90,9 +93,16 @@ public class StudentListViewModel : ViewModelBase
 
     // ----- Logic -----
 
-    // Called when the user comes back to the list, so nothing is selected
-    // and the same student can be clicked again
-    public void Reset()
+    private void OpenStudent(Student student)
+    {
+        _navigator.NavigateTo(new StudentViewModel(student, _absenceService));
+
+        // Clear the list page, so nothing is selected when the user comes back
+        // and the same student can be clicked again
+        Reset();
+    }
+
+    private void Reset()
     {
         SelectedStudent = null;
         SearchText = "";   // also clears the dropdown

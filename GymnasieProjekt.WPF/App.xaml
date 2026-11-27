@@ -8,9 +8,6 @@
         <DataTemplate DataType="{x:Type vm:HomeViewModel}">
             <views:HomeView/>
         </DataTemplate>
-        <DataTemplate DataType="{x:Type vm:StudentsViewModel}">
-            <views:StudentsView/>
-        </DataTemplate>
         <DataTemplate DataType="{x:Type vm:StudentListViewModel}">
             <views:StudentListView/>
         </DataTemplate>
