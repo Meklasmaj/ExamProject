@@ -2,7 +2,7 @@ using GymnasieProjekt.Core.Models;
 
 namespace GymnasieProjekt.Core.Repositories;
 
-public interface IStudentRepository : IReadRepository<Student>
+public interface IStudentRepository : IRepository<Student>
 {
     List<Student> GetByClass(string className);
 
