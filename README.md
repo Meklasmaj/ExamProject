@@ -9,17 +9,32 @@ The app only **reads** data. All data in this repository is made up test data �
 
 ```
 GymnasieProjekt.sln
-├── GymnasieProjekt.Core      Class library: models and repositories (SQL Server via ADO.NET)
+├── GymnasieProjekt.Core      Class library: models, repositories (SQL Server via ADO.NET) and services
 │   ├── Models/
-│   └── Repositories/
+│   ├── Repositories/
+│   └── Services/             AbsenceService – calculates a student's total absence
 ├── GymnasieProjekt.WPF       WPF app using MVVM
-│   ├── MVVM/                 ViewModelBase, RelayCommand
+│   ├── MVVM/                 ViewModelBase, RelayCommand, Navigator (page navigation and "Tilbage")
 │   ├── ViewModels/
 │   ├── Views/
 │   └── appsettings.json      Connection string
-└── Database/
-    └── CreateDatabase.sql    Creates the database, tables and test data
+├── GymnasieProjekt.Tests     MSTest unit tests (no database needed)
+├── Database/
+│   └── CreateDatabase.sql    Creates the database, tables and test data
+└── Docs/                     Diagrams (Mermaid) and glossary
 ```
+
+### Documentation (`Docs/`)
+
+| File | Contents | Language |
+|---|---|---|
+| [Ordliste.md](Docs/Ordliste.md) | Glossary: Danish domain terms → English names in code and database | Danish/English |
+| [Domaenemodel.md](Docs/Domaenemodel.md) | Domain model (HLD) | Danish |
+| [DCD.md](Docs/DCD.md) | Design class diagram (LLD) | English |
+| [Sekvensdiagrammer.md](Docs/Sekvensdiagrammer.md) | One sequence diagram per system operation (LLD) | English |
+| [ER-diagram.md](Docs/ER-diagram.md) | ER diagram, NULL/unique rules and delete rules | English |
+
+GitHub shows the diagrams directly. In Visual Studio or VS Code, use a Markdown preview with Mermaid support.
 
 ## Requirements
 
@@ -104,13 +119,25 @@ If the real connection string contains a password, **do not commit it to GitHub*
 2. Right-click **GymnasieProjekt.WPF** → **Set as Startup Project**.
 3. Press **F5**.
 
-The window shows the students from the database and can filter by class.
+The window has a menu on the left (**Forside**, **Elever**) and a **← Tilbage** button at the top.
+Under **Elever** you can click a student in the list, or search by name and pick from the dropdown.
+That opens the student's page with their total absence; **← Tilbage** returns to the list.
+
+## 4. Run the tests
+
+In Visual Studio: **Test → Run All Tests** (or open **Test Explorer**). From the command line:
+
+```bash
+dotnet test GymnasieProjekt.Tests
+```
+
+The tests cover the absence rules in `AbsenceService` and use a fake repository, so no database is needed.
 
 ## Troubleshooting
 
 | Problem | Likely cause |
 |---|---|
-| The window takes 15–30 seconds to open, then shows an error at the bottom | The app cannot reach the database. Check the server name in `appsettings.json` and that SQL Server is running. |
+| The window takes 15–30 seconds to open, then shows an error under the search field on the **Elever** page | The app cannot reach the database. Check the server name in `appsettings.json` and that SQL Server is running. |
 | `Cannot open database "GymnasieProjektDB"` | The database has not been created – run `Database/CreateDatabase.sql`. |
 | `Login failed for user …` | Your Windows user (or SQL login) has no access to the server or database. |
 | `The certificate chain was issued by an authority that is not trusted` | `TrustServerCertificate=True` is missing from the connection string. |

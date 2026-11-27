@@ -4,6 +4,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GymnasieProjekt.Core", "Gym
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GymnasieProjekt.WPF", "GymnasieProjekt.WPF\GymnasieProjekt.WPF.csproj", "{5779CEA4-B6B0-4CB3-8C8C-BC52F5093A7F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GymnasieProjekt.Tests", "GymnasieProjekt.Tests\GymnasieProjekt.Tests.csproj", "{906932B7-CFE4-4E5E-AD7C-4BB878D59FE9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -38,6 +40,18 @@ Global
 		{5779CEA4-B6B0-4CB3-8C8C-BC52F5093A7F}.Release|x64.Build.0 = Release|Any CPU
 		{5779CEA4-B6B0-4CB3-8C8C-BC52F5093A7F}.Release|x86.ActiveCfg = Release|Any CPU
 		{5779CEA4-B6B0-4CB3-8C8C-BC52F5093A7F}.Release|x86.Build.0 = Release|Any CPU
+		{906932B7-CFE4-4E5E-AD7C-4BB878D59FE9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{906932B7-CFE4-4E5E-AD7C-4BB878D59FE9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{906932B7-CFE4-4E5E-AD7C-4BB878D59FE9}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{906932B7-CFE4-4E5E-AD7C-4BB878D59FE9}.Debug|x64.Build.0 = Debug|Any CPU
+		{906932B7-CFE4-4E5E-AD7C-4BB878D59FE9}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{906932B7-CFE4-4E5E-AD7C-4BB878D59FE9}.Debug|x86.Build.0 = Debug|Any CPU
+		{906932B7-CFE4-4E5E-AD7C-4BB878D59FE9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{906932B7-CFE4-4E5E-AD7C-4BB878D59FE9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{906932B7-CFE4-4E5E-AD7C-4BB878D59FE9}.Release|x64.ActiveCfg = Release|Any CPU
+		{906932B7-CFE4-4E5E-AD7C-4BB878D59FE9}.Release|x64.Build.0 = Release|Any CPU
+		{906932B7-CFE4-4E5E-AD7C-4BB878D59FE9}.Release|x86.ActiveCfg = Release|Any CPU
+		{906932B7-CFE4-4E5E-AD7C-4BB878D59FE9}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
